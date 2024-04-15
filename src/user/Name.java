@@ -34,7 +34,6 @@ public class Name {
         this.ssn = ssn;
     }
 
-
     public String toString(){
         return this.firstName + ", " + this.lastName +", "+ssn;
     }
