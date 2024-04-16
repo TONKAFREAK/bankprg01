@@ -1,16 +1,18 @@
 package user;
 
-public class userAccountInfo {
+public class userAccountInfo extends Name{
     
-    private Name name;
     private int accountNum;
     private String accountType;
     private double balance;
+    private Name name;
 
-    public userAccountInfo(Name name, int accountNum, String accountType){
-        this.name = name;
+    public userAccountInfo(int accountNum, String accountType, String firstName, String lastName, String ssn, double balance){
+        super(firstName, lastName, ssn);
         this.accountNum = accountNum;
         this.accountType = accountType;
+        this.balance = balance;
+        
     }
 
     public Name getName(){
