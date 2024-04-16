@@ -10,12 +10,12 @@ public class TransactionManager {
 
     public TransactionManager(char choice, Scanner sc){
         setAccountNum(sc);
-        HandleTransaction(choice);
+        HandleTransaction(choice, sc);
         
 
     }
 
-    public void HandleTransaction(char choice){
+    public void HandleTransaction(char choice, Scanner sc){
         switch(choice){
             case 'W':
                 withdrawal();
@@ -37,19 +37,19 @@ public class TransactionManager {
                 break;
             default:
                 System.out.println("Invalid selection. Please try again.");
-                mm.menu();
+                mm.menu(sc);
                 break;
         }
     }
 
     public void setAccountNum(Scanner sc) {
         System.out.println("Enter Account Number: ");
-        try {
-            accountNum = sc.nextInt();
-        } catch (Exception e) {
-            System.out.println("Invalid account number. Please try again.");
-            setAccountNum(sc);
+        while (!sc.hasNextInt()) {
+            System.out.println("Invalid account number. Please enter a valid integer:");
+            sc.next(); 
         }
+        accountNum = sc.nextInt();
+        sc.nextLine(); 
     }
     
 
@@ -68,9 +68,6 @@ public class TransactionManager {
     public void balanceInquiry(int accountNum){
 
         System.out.println("Balance Inquiry");
-         
-       
-
         System.out.println( dm.getAccount(accountNum).getBalance());
 
         

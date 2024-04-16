@@ -13,10 +13,11 @@ public class Main {
     public Main() {
 
         try {
+            new DataManager();
             do {
-                choice = mm.menu(); 
+                choice = mm.menu(scanner); 
                 if (choice != 'Q') {
-                    new DataManager();
+                    
                     new TransactionManager(choice, scanner);
                 }
             } while (choice != 'Q');

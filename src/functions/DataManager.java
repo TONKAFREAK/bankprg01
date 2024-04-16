@@ -64,12 +64,11 @@ public class DataManager {
         
     }
 
-    public userAccountInfo getAccount(int accountNum){
-        for (int i = 0; i < accounts.length; i++){
-            if (accounts[i].getAccountNum() == accountNum){
-                return accounts[i];
+    public userAccountInfo getAccount(int accountNum) {
+        for (userAccountInfo account : accounts) {
+            if (account != null && account.getAccountNum() == accountNum) {
+                return account;
             }
-            return null;
         }
         return null;
     }
