@@ -7,14 +7,14 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 
 import user.userAccountInfo;
 
 public class DataManager {
 
-    final int MAX_ACCOUNTS = 100;
-
-    private userAccountInfo[] accounts = new userAccountInfo[MAX_ACCOUNTS];
+    private List<userAccountInfo> accounts = new ArrayList<>();
     
     File dataFile = new File("src/data/database.txt");
     File outFile = new File("src/data/output.txt");
@@ -43,7 +43,7 @@ public class DataManager {
                         String lastName = parts[3];
                         String ssn = parts[4];
                         double balance = Double.parseDouble(parts[5]);
-                        accounts[count++] = new userAccountInfo(acctNum, acctType, firstName, lastName, ssn, balance);
+                        addAccount(new userAccountInfo(acctNum, acctType, firstName, lastName, ssn, balance));
                     }
                 }
             }
@@ -52,7 +52,7 @@ public class DataManager {
         }
     }
 
-    public void printData(String transactionType, String accountNum, double amount, double balance){
+    public void printData(String transactionType, String accountNum, String accountType, double amount, double balance){
 
         try {
 
@@ -60,6 +60,7 @@ public class DataManager {
             writer.write("Date: "+ dtf.format(now) + " | Transaction #" +getTranscationNumber()+"\n");
             writer.write("Transaction Type: " + transactionType + "\n");
             writer.write("Account Number: " + accountNum + "\n");
+            writer.write("Account Type: " + accountType + "\n");
             if (transactionType.equals("Withdrawal")) {
                 writer.write("Withdraw Amount: $" + amount + "\n");
             }
@@ -79,14 +80,12 @@ public class DataManager {
       
     }
 
-
     public void saveData() {
         try (BufferedWriter writer = new BufferedWriter(new java.io.FileWriter(dataFile))) {
-            // Writing the header with fixed column widths
+        
             writer.write(String.format("%-10s %-10s %-12s %-12s %-12s %-15s\n",
                                        "# AcctNum", "AcctType", "FirstName", "LastName", "SSN", "Balance"));
     
-            // Loop through each account and format each field to align under its corresponding column
             for (userAccountInfo account : accounts) {
                 if (account != null) {
                     String line = String.format("%-10s %-10s %-12s %-12s %-12s %-15.2f\n",
@@ -128,14 +127,18 @@ public class DataManager {
         writer.close();
     }
 
-     public void deleteAccount(String accountNum) {
-        for (int i = 0; i < accounts.length; i++) {
-            if (accounts[i] != null && accounts[i].getAccountNum().equals(accountNum)) {
-                accounts[i] = null;
-                break;
-            }
-        }
-     }
+    public void deleteAccount(String accountNum) {
+        accounts.removeIf(acc -> acc.getAccountNum().equals(accountNum));
+    }
+
+     public void addAccount(userAccountInfo account) {
+        accounts.add(account);
+    }
+
+    public String getLastAccountNumber() {
+        if (accounts.isEmpty()) return "000000";
+        return accounts.get(accounts.size() - 1).getAccountNum();
+    }
 
 
 }

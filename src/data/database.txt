@@ -1,3 +1,4 @@
 # AcctNum  AcctType   FirstName    LastName     SSN          Balance        
-000001     Debit      John         Doe          123-45-6789  4262.00        
+000001     Debit      John         Doe          123-45-6789  4000.00        
 000002     Debit      Jack         Monroe       764-52-6241  10000.00       
+000003     Debit      Jon          O            987-65-4321  20.00               
