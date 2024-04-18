@@ -8,7 +8,7 @@ public class MainMenu {
         char choice = ' ';
         boolean valid = false;
         while (!valid) {
-            System.out.println();
+           
             System.out.println("Select one of the following transactions:");
             System.out.println("\t****************************");
             System.out.println("\t    List of Choices         ");

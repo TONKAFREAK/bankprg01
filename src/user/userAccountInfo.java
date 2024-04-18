@@ -2,12 +2,14 @@ package user;
 
 public class userAccountInfo extends Name{
     
-    private int accountNum;
+    private String accountNum;
     private String accountType;
     private double balance;
     private Name name;
+    @SuppressWarnings("unused")
+    private int pin;
 
-    public userAccountInfo(int accountNum, String accountType, String firstName, String lastName, String ssn, double balance){
+    public userAccountInfo(String accountNum, String accountType, String firstName, String lastName, String ssn, double balance){
         super(firstName, lastName, ssn);
         this.accountNum = accountNum;
         this.accountType = accountType;
@@ -19,7 +21,7 @@ public class userAccountInfo extends Name{
         return this.name;
     }
 
-    public int getAccountNum(){
+    public String getAccountNum(){
         return this.accountNum;
     }
 
@@ -35,7 +37,7 @@ public class userAccountInfo extends Name{
         this.name = name;
     }
 
-    public void setAccountNum(int accountNum){
+    public void setAccountNum(String accountNum){
         this.accountNum = accountNum;
     }
 
