@@ -6,7 +6,6 @@ public class userAccountInfo extends Name{
     private String accountType;
     private double balance;
     private Name name;
-    @SuppressWarnings("unused")
     private int pin;
 
     public userAccountInfo(String accountNum, String accountType, String firstName, String lastName, String ssn, double balance){
@@ -33,6 +32,10 @@ public class userAccountInfo extends Name{
         return this.balance;
     }
 
+    public int getPin(){
+        return this.pin;
+    }
+
     public void setName(Name name){
         this.name = name;
     }
@@ -47,6 +50,10 @@ public class userAccountInfo extends Name{
 
     public void setBalance(double balance){
         this.balance = balance;
+    }
+
+    public void setPin(int pin){
+        this.pin = pin;
     }
 
     public String toString(){

@@ -103,8 +103,6 @@ public class DataManager {
         }
     }
     
-    
-
     public userAccountInfo getAccount(String accountNum) {
         for (userAccountInfo account : accounts) {
             if (account != null && account.getAccountNum().equals(accountNum)) {

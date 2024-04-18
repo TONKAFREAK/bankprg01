@@ -57,9 +57,6 @@ public class TransactionManager {
         sc.nextLine(); 
     }
 
-    
-    
-
     public void withdrawal( String accountNum, Scanner sc){
         System.out.println("Enter amount to withdraw: ");
         while (!sc.hasNextDouble()) {
@@ -167,8 +164,6 @@ public class TransactionManager {
             System.out.println("Account " + accountNum + " has been deleted.");
             System.out.println("--------------------------");
         } 
-        
-        
         
     } 
     
